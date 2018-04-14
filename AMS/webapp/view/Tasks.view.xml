@@ -1,0 +1,62 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:footerbar="sap.ushell.ui.footerbar" xmlns:l="sap.ui.layout"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:sap.ui.core="sap.ui.core" xmlns:semantic="sap.m.semantic" xmlns:smart="sap.ui.comp.smartfield"
+	xmlns="sap.m" controllerName="AMSTools.controller.Tasks">
+	<App id="task_id">
+		<semantic:DetailPage id="page" navButtonPress="onNavBack" showNavButton="true" title="Task List" busy="{viewModel>/busy}">
+			<semantic:content>
+				<f:SimpleForm id="SimpleFormToolbar" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
+					labelSpanS="4" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+					singleContainerFullSize="false" ariaLabelledBy="Title1">
+					<f:content>
+						<Table items="{ path: '/' }">
+							<headerToolbar>
+								<Toolbar>
+									<Title text="Tasks" level="H2"/>
+									<ToolbarSpacer/>
+									<Button text="Download" icon="sap-icon://excel-attachment" press="onExport"/>
+								</Toolbar>
+							</headerToolbar>
+							<columns>
+								<Column>
+									<Text text="User"/>
+								</Column>
+								<Column>
+									<Text text="Task Name"/>
+								</Column>
+								<Column>
+									<Text text="Status"/>
+								</Column>
+								<Column>
+									<Text text="Working Hours"/>
+								</Column>
+								<Column>
+									<Text text="Start Date"/>
+								</Column>
+								<Column>
+									<Text text="End Date"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem vAlign="Middle" type="Navigation">
+									<cells>
+										<Text text="{UserID}" wrapping="false"/>
+										<Text text="{TaskName}" wrapping="false"/>
+										<ObjectStatus class="sapUiSmallMarginBottom"
+											text="{=${Status} === '01'?'Pending': ${Status} === '02'?'Opening': ${Status} === '03'?'In Processing':${Status} === '04'?'Finished':'In Processing'}"
+											state="{=${Status} === '01'?'None': ${Status} === '02'?'Success': ${Status} === '03'?'Warning':${Status} === '04'?'Success':'None'}"/>
+										<ObjectNumber number="{=(${EndDate} - ${StartDate}) / 3600000}" unit="Hour" state="Success"/>
+										<Text text="{StartDate}"/>
+										<Text text="{EndDate}"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</f:content>
+				</f:SimpleForm>
+			</semantic:content>
+			<semantic:customFooterContent>
+				<Button id="create" type="Accept" text="Create Task" enabled="{viewModel>/enableCreate}" press="onCreate"/>
+			</semantic:customFooterContent>
+		</semantic:DetailPage>
+	</App>
+</mvc:View>

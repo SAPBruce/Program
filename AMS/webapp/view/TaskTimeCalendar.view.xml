@@ -1,0 +1,39 @@
+<mvc:View controllerName="AMSTools.controller.TaskTimeCalendar" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:unified="sap.ui.unified" xmlns="sap.m" xmlns:semantic="sap.m.semantic" xmlns:f="sap.ui.layout.form">
+	<App id="timeCalendar_id">
+		<semantic:FullscreenPage title="{i18n>calendarPage}" showNavButton="true" navButtonPress="onNavBack">
+			<semantic:content>
+				<f:SimpleForm id="formTransaction" title="{i18n>titleForm}" editable="false" layout="ResponsiveGridLayout" columnsL="1" columnsM="1"
+					columnsXL="1" labelSpanL="4" labelSpanM="4" labelSpanXL="4" emptySpanL="0" emptySpanM="0" emptySpanXL="0" adjustLabelSpan="true">
+					<f:content>
+						<PlanningCalendar id="taskTimeCalendar" startDate="{path: '/startDate'}" rows="{path: '/'}" appointmentsVisualization="Filled"
+							appointmentSelect="handleAppointmentSelect" showEmptyIntervalHeaders="false" showWeekNumbers="true">
+							<toolbarContent>
+								<Title text="" titleStyle="H4"/>
+							</toolbarContent>
+							<rows>
+								<PlanningCalendarRow icon="{pic}" title="{name}" text="{role}" appointments="{path : 'appointments', templateShareable: 'true'}"
+									intervalHeaders="{path: 'headers', templateShareable: 'true'}">
+									<customData>
+										<core:CustomData key="emp-name" value="{name}" writeToDom="true"/>
+									</customData>
+									<appointments>
+										<unified:CalendarAppointment startDate="{start}" endDate="{end}" icon="{pic}" title="{title}" text="{info}" type="{type}"
+											tentative="{tentative}"></unified:CalendarAppointment>
+									</appointments>
+									<intervalHeaders>
+										<unified:CalendarAppointment startDate="{start}" endDate="{end}" icon="{pic}" title="{title}" type="{type}"></unified:CalendarAppointment>
+									</intervalHeaders>
+								</PlanningCalendarRow>
+							</rows>
+						</PlanningCalendar>
+					</f:content>
+				</f:SimpleForm>
+			</semantic:content>
+			<semantic:customFooterContent>
+				<Button type="Accept" text="Show Condition" press="onshow"/>
+				<Button type="Accept" text="My Tasks" press="onPress"/>
+			</semantic:customFooterContent>
+		</semantic:FullscreenPage>
+	</App>
+</mvc:View>

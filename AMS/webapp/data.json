@@ -1,0 +1,30 @@
+{
+	"TileCollection" : [
+		{
+			"icon" : "sap-icon://travel-expense-report",
+			"number" : "281",
+			"numberUnit" : "euro",
+			"title" : "Travel Reimbursement",
+			"info" : "1 day ago"
+		},
+		{
+			"icon" : "sap-icon://loan",
+			"number" : "2380",
+			"numberUnit" : "euro",
+			"title" : "My Salary",
+			"info" : "8 days ago"
+		},
+		{
+			"icon" : "sap-icon://lab",
+			"number" : "1",
+			"numberUnit" : "Invention",
+			"title" : "Test Lab Reports",
+			"info" : "8 Days Ago"
+		},
+		{
+			"icon" : "sap-icon://inbox",
+			"type" : "Monitor",
+			"title" : "Leave Request History"
+		}
+	]
+}

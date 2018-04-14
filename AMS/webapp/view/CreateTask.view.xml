@@ -1,0 +1,39 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:footerbar="sap.ushell.ui.footerbar" xmlns:l="sap.ui.layout"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:sap.ui.core="sap.ui.core" xmlns:semantic="sap.m.semantic" xmlns:smart="sap.ui.comp.smartfield"
+	xmlns="sap.m" controllerName="AMSTools.controller.CreateTask">
+	<App id="noteTask_id">
+		<semantic:DetailPage id="page" navButtonPress="onNavBack" title="Note Tasks" busy="{viewModel>/busy}">
+			<semantic:content>
+				<f:SimpleForm class="editableForm" columnsL="1" editable="true" emptySpanL="1" emptySpanM="1" id="newEntitySimpleForm" labelSpanL="2"
+					layout="ResponsiveGridLayout" maxContainerCols="2" minWidth="1024" breakpointL="2000" breakpointXL="1024">
+					<f:content>
+						<Label text="Employee" class="changeColor" required="false"/>
+						<Input name="Employee" id="Employee_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" editable="false" enabled="false"
+							visible="true" value="S001258"/>
+						<Label text="Task Name" class="changeColor" required="true"/>
+						<Input name="TaskName" id="TaskName_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" editable="true" enabled="true"
+							visible="true" value=""/>
+						<Label text="Start Date" class="changeColor" required="true"/>
+						<DateTimePicker id="StartDate_id" value="{path:'/startDate', type:'sap.ui.model.type.DateTime', formatOptions: { style: 'short'}}"
+							placeholder="Enter Date ..." change="handleStartChange"/>
+						<Label text="End Date" class="changeColor" required="true"/>
+						<DateTimePicker id="EndDate_id" value="{path:'/endDate', type:'sap.ui.model.type.DateTime', formatOptions: { style: 'short'}}"
+							placeholder="Enter Date ..." change="handleEndChange"/>
+						<Label text="Work Hours" class="changeColor" required="true"/>
+						<Input name="WorkHours" id="WorkHours_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" editable="false" enabled="false"
+							visible="true" value=""/>
+						<Label text="Notes" class="changeColor"/>
+						<TextArea name="TaskDescription" id="TaskDesc_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
+							value="" rows="20" growing="true"/>
+					</f:content>
+				</f:SimpleForm>
+			</semantic:content>
+			<semantic:saveAction>
+				<semantic:SaveAction id="save" enabled="{viewModel>/enableCreate}" press="onSave"/>
+			</semantic:saveAction>
+			<semantic:cancelAction>
+				<semantic:CancelAction id="cancel" press="onCancel"/>
+			</semantic:cancelAction>
+		</semantic:DetailPage>
+	</App>
+</mvc:View>

@@ -1,0 +1,19 @@
+<mvc:View controllerName="AMSTools.controller.Main" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" height="100%"
+	displayBlock="true" xmlns="sap.m">
+	<App id="mainPage">
+		<Page showHeader="false" enableScrolling="false">
+			<TileContainer id="container" tileDelete="handleTileDelete" tiles="{/TileCollection}">
+				<StandardTile icon="{icon}" type="{type}" number="{number}" numberUnit="{numberUnit}" title="{title}" info="{info}" press="handPress"
+					infoState="{infoState}"/>
+			</TileContainer>
+			<footer>
+				<Toolbar>
+					<ToolbarSpacer/>
+					<Button text="Edit" press="handleEditPress"/>
+					<Button text="Busy state" press="handleBusyPress"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+			</footer>
+		</Page>
+	</App>
+</mvc:View>
