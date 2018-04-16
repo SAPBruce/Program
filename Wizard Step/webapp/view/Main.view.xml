@@ -1,0 +1,29 @@
+<mvc:View controllerName="baoaos4bqn1.controller.Main" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+	<App>
+		<pages>
+			<Page title="Questionaire Wizard">
+				<content>
+					<VBox>
+						<f:SimpleForm id="SimpleFormDisplay354" editable="true" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3"
+							labelSpanS="12" adjustLabelSpan="true" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+							singleContainerFullSize="false">
+							<f:content>
+								<Label text="OPPY Name" labelFor="nameText"/>
+								<Input required="true" id="nameText" value="" submit="onChangeOppyName"/>
+							</f:content>
+						</f:SimpleForm>
+						<Wizard id="QuestionWizard" complete="wizardCompletedHandler"></Wizard>
+					</VBox>
+				</content>
+				<footer>
+					<OverflowToolbar>
+						<ToolbarSpacer/>
+						<Button text="Save" press="onSave"/>
+						<Button text="Cancel" press="onCancel"/>
+					</OverflowToolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>
