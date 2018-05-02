@@ -1,0 +1,45 @@
+<mvc:View controllerName="Upload_Download.controller.main" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true" xmlns="sap.m" xmlns:u="sap.ui.unified">
+	<App>
+		<pages>
+			<Page title="{i18n>title}">
+				<content>
+					<Table id="picTable" width="auto" items="{pics>/}" growing="true" growingThreshold="50" growingScrollToLoad="true">
+						<headerToolbar>
+							<Toolbar>
+								<Title text="{i18n>upload}" level="H2"/>
+								<ToolbarSpacer/>
+								<u:FileUploader id="fileUploader" name="fileUplaoder"/>
+								<Button text="{i18n>upload}" press="onUpload"/>
+							</Toolbar>
+						</headerToolbar>
+						<columns>
+							<Column>
+								<Text text="{i18n>Scope}"/>
+							</Column>
+							<Column >
+								<Text text="{i18n>filename}"/>
+							</Column>
+							<Column >
+								<Text text="{i18n>description}"/>
+							</Column>
+							<Column width="5%"></Column>
+							<Column width="5%"></Column>
+						</columns>
+						<items>
+							<ColumnListItem >
+								<cells>
+									<Text text="{pics>Scope}"/>
+									<Text text="{pics>Name}"/>
+									<Text text="{pics>Description}"/>
+									<Button icon="sap-icon://download" press="onDownload"/>
+									<Button icon="sap-icon://delete" press="onDeleteFile" type="Reject"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

@@ -1,0 +1,60 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZAMSTOOLS_SRV" xml:lang="en" sap:schema-version="1">
+            <EntityType Name="User" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="User ID"/>
+                <Property Name="UserName" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="User Name" sap:filterable="false"/>
+                <Property Name="TaskID" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Task ID"/>
+                <Property Name="Changed" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Change Time" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="Task" Relationship="ZAMSTOOLS_SRV.hasTasks" FromRole="FromRole_hasTasks" ToRole="ToRole_hasTasks"/>
+            </EntityType>
+            <EntityType Name="Task" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="UserID"/>
+                    <PropertyRef Name="TaskUUID"/>
+                </Key>
+                <Property Name="UserID" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="User ID"/>
+                <Property Name="TaskUUID" Type="Edm.Guid" Nullable="false" sap:label="Task UUID"/>
+                <Property Name="TaskName" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Task Name" sap:filterable="false"/>
+                <Property Name="TaskDesc" Type="Edm.String" MaxLength="100" sap:label="Task Description" sap:filterable="false"/>
+                <Property Name="StartDate" Type="Edm.DateTime" Precision="0" sap:label="Start Date" sap:filterable="false"/>
+                <Property Name="EndDate" Type="Edm.DateTime" Precision="0" sap:label="End Date" sap:filterable="false"/>
+                <Property Name="Status" Type="Edm.String" MaxLength="2" sap:label="Status" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="Picture" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Scope"/>
+                    <PropertyRef Name="Name"/>
+                </Key>
+                <Property Name="Scope" Type="Edm.String" Nullable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Name" Type="Edm.String" Nullable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MimeType" Type="Edm.String" sap:sortable="false"/>
+                <Property Name="Description" Type="Edm.String" Nullable="false" sap:sortable="false"/>
+            </EntityType>
+            <Association Name="hasTasks" sap:content-version="1">
+                <End Type="ZAMSTOOLS_SRV.User" Multiplicity="1" Role="FromRole_hasTasks"/>
+                <End Type="ZAMSTOOLS_SRV.Task" Multiplicity="*" Role="ToRole_hasTasks"/>
+            </Association>
+            <EntityContainer Name="ZAMSTOOLS_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="UserSet" EntityType="ZAMSTOOLS_SRV.User" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="TaskSet" EntityType="ZAMSTOOLS_SRV.Task" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="PictureSet" EntityType="ZAMSTOOLS_SRV.Picture" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <AssociationSet Name="hasTasks_AssocSet" Association="ZAMSTOOLS_SRV.hasTasks" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="UserSet" Role="FromRole_hasTasks"/>
+                    <End EntitySet="TaskSet" Role="ToRole_hasTasks"/>
+                </AssociationSet>
+            </EntityContainer>
+            <atom:link
+                xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZAMSTOOLS_SRV/$metadata"/>
+                <atom:link
+                    xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZAMSTOOLS_SRV/$metadata"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx>
